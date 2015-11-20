@@ -1,21 +1,7 @@
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
-
-import javax.swing.ImageIcon;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JPanel;
 
 
-public class Pong {
+public class Pong implements KeyListener{
 	
 	/* Width of area */
 	private static final int SIZE_PONG_X = 800;
@@ -26,11 +12,17 @@ public class Pong {
 	/*background color or the area*/
 	private static final Color backgroundColor = new Color(0xFF, 0x40, 0);
 	
+	public Pong() {
+		racketGauche = new Racket ("img/ball.png",0,300,4);
+		ball = new Ball ("img/ball.png",400,300);
+		this.addKeyListener(this);
+	}
+	
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
-	private Racket racketGauche = new Racket ("img/ball.png",0,300,4);
-	private Ball ball = new Ball ("img/ball.png",400,300);
+	private Racket racketGauche;
+	private Ball ball;
 	
 	public void updateScreen() {
 		if (buffer == null) {
