@@ -29,6 +29,8 @@ public class Pong {
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
+	private Racket racketGauche = new Racket ("img/ball.png",0,300,4);
+	private Ball ball = new Ball ("img/ball.png",400,300);
 	
 	public void updateScreen() {
 		if (buffer == null) {
@@ -42,8 +44,8 @@ public class Pong {
 			graphicContext.fillRect(0, 0, SIZE_PONG_X, SIZE_PONG_Y);
 			
 			/* Draw Images */
-			graphicContext.drawImage(Ball.getSprite(), Ball.getPosX(), Ball.getPosY(), Ball.getWidth(), Ball.getHeight(), null);
-			graphicContext.drawImage(Racket.getSprite(), Racket.getPosX(), Racket.getPosY(), Racket.getWidth(), Racket.getHeight(), null);
+			graphicContext.drawImage(ball.getSprite(), ball.getPosX(), ball.getPosY(), ball.getWidth(), ball.getHeight(), null);
+			graphicContext.drawImage(racketGauche.getSprite(), racketGauche.getPosX(), racketGauche.getPosY(), racketGauche.getWidth(), racketGauche.getHeight(), null);
 		}
 	}
 	
@@ -51,30 +53,17 @@ public class Pong {
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_KP_UP:
-				Racket.setSpeedY(- Racket.getSpeedY());
+				racketGauche.setSpeedY(- racketGauche.getSpeedY());
 				break;
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_KP_DOWN:
-				Racket.setSpeedY(Racket.getSpeedY());
+				racketGauche.setSpeedY(racketGauche.getSpeedY());
 				break;
 			default:
 				System.out.println("got press "+e);
 		}
 	}
 	
-	public void keyPressed (KeyEvent e) {
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_KP_UP:
-			Racket.setSpeedY(0);
-			break;
-		case KeyEvent.VK_DOWN:
-		case KeyEvent.VK_KP_DOWN:
-			Racket.setSpeedY(0);
-			break;
-		default:
-			System.out.println("got press "+e);
-	}
-	}
+
 	
 }
