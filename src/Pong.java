@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.color.*;
 
 import javax.swing.JPanel;
 
@@ -20,6 +19,8 @@ public class Pong extends JPanel implements KeyListener{
 	
 	private Graphics graphicContext = null;
 	private Racket racketGauche;
+	private PongItem t[] = {racketGauche};
+	
 	private Ball ball;
 	
 	
@@ -78,6 +79,11 @@ public class Pong extends JPanel implements KeyListener{
 		}
 	}
 	public void keyTyped(KeyEvent e) { }
+	
+	public void animate() {
+		ball.rebound(t);
+		t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
+	}
 	
 
 	
