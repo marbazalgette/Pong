@@ -15,13 +15,15 @@ public class Pong extends JPanel implements KeyListener{
 	/*background color or the area*/
 	private static final Color backgroundColor = new Color(0xFF, 0x40, 0);
 	
+	public final int timestep = 10;
+	
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
-	private Racket racketGauche;
+	private Racket racketGauche = new Racket("racket.png", 0, 0, 0);
 	private PongItem t[] = {racketGauche};
 	
-	private Ball ball;
+	private Ball ball = new Ball("ball.png", 0, 0);
 	
 	
 	public Pong() {
@@ -81,9 +83,12 @@ public class Pong extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent e) { }
 	
 	public void animate() {
-		ball.rebound(t);
-		t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
-	}
+			if (ball != null) {
+				ball.rebound(t);
+				t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
+				updateScreen();
+			}
+		}
 	
 
 	
