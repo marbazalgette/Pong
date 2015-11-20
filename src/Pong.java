@@ -83,11 +83,9 @@ public class Pong extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent e) { }
 	
 	public void animate() {
-			if (ball != null) {
 				ball.rebound(t);
 				t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
 				updateScreen();
-			}
 		}
 	
 
