@@ -1,7 +1,11 @@
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.color.*;
 
+import javax.swing.JPanel;
 
-public class Pong implements KeyListener{
+public class Pong extends JPanel implements KeyListener{
 	
 	/* Width of area */
 	private static final int SIZE_PONG_X = 800;
@@ -12,21 +16,24 @@ public class Pong implements KeyListener{
 	/*background color or the area*/
 	private static final Color backgroundColor = new Color(0xFF, 0x40, 0);
 	
-	public Pong() {
-		racketGauche = new Racket ("img/ball.png",0,300,4);
-		ball = new Ball ("img/ball.png",400,300);
-		this.addKeyListener(this);
-	}
-	
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
 	private Racket racketGauche;
 	private Ball ball;
 	
+	
+	public Pong() {
+		racketGauche = new Racket ("img/ball.png",0,300,4);
+		ball = new Ball ("img/ball.png",400,300);
+		this.addKeyListener(this);
+	}
+	
+
+	
 	public void updateScreen() {
 		if (buffer == null) {
-			buffer =  new BufferedImage(SIZE_PONG_X, SIZE_PONG_Y, BufferedImage.TYPE_INT_ARGB);
+			buffer =  createImage(SIZE_PONG_X, SIZE_PONG_Y);
 			if (buffer == null)
 				throw new RuntimeException("no buffer");
 			else
@@ -55,6 +62,22 @@ public class Pong implements KeyListener{
 				System.out.println("got press "+e);
 		}
 	}
+	
+	public void keyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_KP_UP:
+				racketGauche.setSpeedY(0);
+				break;
+			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_KP_DOWN:
+				racketGauche.setSpeedY(0);
+				break;
+			default:
+				System.out.println("got release "+e);
+		}
+	}
+	public void keyTyped(KeyEvent e) { }
 	
 
 	
