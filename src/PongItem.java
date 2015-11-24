@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 public abstract class PongItem {
@@ -83,11 +84,11 @@ public abstract class PongItem {
 	
 	protected boolean collision(PongItem b){
 		if( ((this.posX + this.width) >= b.posX) && ((this.posY <= (b.posY + b.height)) && (this.posY >= b.posY)) ||
-				(((this.posY + this.height) >= b.posY) && ((this.posY + this.height) <= (b.posY + b.height))))
-			return true;
+				(((this.posY + this.height) >= b.posY) && ((this.posY + this.height) <= (b.posY + b.height)))) 
+			return true; 
 		if ( ((this.posX <= (b.posX + b.width)) && ((this.posY <= (b.posY + b.height)) && (this.posY >= b.posY)) ||
-				(((this.posY + this.height) >= b.posY) && ((this.posY + this.height) <= (b.posY + b.height)))))
-			return true;
+				(((this.posY + this.height) >= b.posY) && ((this.posY + this.height) <= (b.posY + b.height))))) 
+			return true; 
 		return false;
 	}
 	
