@@ -32,7 +32,7 @@ public abstract class PongItem {
 		this.posX = posX;
 	}
 
-	public int getPosY() {
+	public  int getPosY() {
 		return posY;
 	}
 
