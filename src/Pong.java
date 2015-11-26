@@ -35,7 +35,7 @@ public class Pong extends JPanel implements KeyListener{
 	
 	
 	public Pong() {
-		racketGauche = new Racket ("img/racket.png",0,300,4);
+		racketGauche = new Racket ("img/racket.png",0,300,0);
 		ball = new Ball ("img/ball.png",400,300);
 		t = new ArrayList();
 		t.add(ball);
@@ -71,11 +71,11 @@ public class Pong extends JPanel implements KeyListener{
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_KP_UP:
-				racketGauche.setSpeedY(- racketGauche.getSpeedY());
+				racketGauche.setSpeedY(- 4);
 				break;
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_KP_DOWN:
-				racketGauche.setSpeedY(racketGauche.getSpeedY());
+				racketGauche.setSpeedY(4);
 				break;
 			default:
 				System.out.println("got press "+e);
@@ -100,9 +100,17 @@ public class Pong extends JPanel implements KeyListener{
 	
 	public void animate() {
 				ball.rebound(t);
-				ball.move();
-				//t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
+				for (int i =0 ;i<t.size(); i++)
+					t.get(i).move(); 
+				if(racketGauche.getPosY()<0)
+					//System.out.println("ancienne position =" + racketGauche.getPosY() );
+					racketGauche.setPosY(0);
+					//System.out.println("nouvelle position =" + racketGauche.getPosY() );
+				if(racketGauche.getPosY()+racketGauche.getHeight()>SIZE_PONG_Y){
+					racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());
+				}
 				updateScreen();
+
 		}
 	
 	
