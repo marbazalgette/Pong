@@ -1,11 +1,18 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 public class Pong extends JPanel implements KeyListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	/* Width of area */
 	public static final int SIZE_PONG_X = 800;
 
@@ -21,16 +28,18 @@ public class Pong extends JPanel implements KeyListener{
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
-	private Racket racketGauche = new Racket("img/racket.png", 0, 0, 0);
-	private PongItem t[] = {racketGauche};
+	private Racket racketGauche ;//= new Racket("img/racket.png", 0, 0, 0);
+	public static ArrayList <PongItem> t ; //= {ball,racketGauche};
 	
-	private Ball ball = new Ball("ball.png", 0, 0);
+	private Ball ball;// = new Ball("ball.png", 0, 0);
 	
 	
 	public Pong() {
 		racketGauche = new Racket ("img/racket.png",0,300,4);
 		ball = new Ball ("img/ball.png",400,300);
-		PongItem t[] = {ball, racketGauche};
+		t = new ArrayList();
+		t.add(ball);
+		t.add(racketGauche);
 		this.addKeyListener(this);
 	}
 	

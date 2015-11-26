@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class Ball extends PongItem {
 		
@@ -9,9 +11,9 @@ public class Ball extends PongItem {
 		
 	}
 	
-	public void rebound (PongItem t[]) {
-		for (int i=0; i<t.length; i++) {
-			if (this.collision(t[i]) == true) {
+	public void rebound (ArrayList<PongItem> t) {
+		for (int i=1; i<t.size(); i++) {
+			if (this.collision(t.get(i)) == true) {
 				setSpeedX(- this.getSpeedX());
 			}
 		} 
