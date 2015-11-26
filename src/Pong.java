@@ -21,7 +21,7 @@ public class Pong extends JPanel implements KeyListener{
 	
 	private Graphics graphicContext = null;
 	private Racket racketGauche = new Racket("img/racket.png", 0, 0, 0);
-	private PongItem t[] = {racketGauche};
+	private PongItem t[];
 	
 	private Ball ball = new Ball("ball.png", 0, 0);
 	
@@ -29,7 +29,7 @@ public class Pong extends JPanel implements KeyListener{
 	public Pong() {
 		racketGauche = new Racket ("img/racket.png",0,300,4);
 		ball = new Ball ("img/ball.png",400,300);
-		PongItem t[] = {ball, racketGauche};
+		PongItem[] t = new PongItem[] {ball, racketGauche} ;
 		this.addKeyListener(this);
 	}
 	
@@ -89,12 +89,13 @@ public class Pong extends JPanel implements KeyListener{
 	public void keyTyped(KeyEvent e) { }
 	
 	public void animate() {
-				ball.rebound(t);
-				ball.move();
-				//t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
-				updateScreen();
+		for (int i=0; i<t.length; i++) {
+			t[i].move();
 		}
-	
+		ball.rebound(t);
+		updateScreen();
+	}
+		
 	
 	
 
