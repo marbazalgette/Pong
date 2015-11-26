@@ -5,6 +5,7 @@ public class Ball extends PongItem {
 		super(Image, posX, posY);
 		this.setSpeedX(2);
 		this.setSpeedY(2);
+		
 	}
 	
 	public void rebound (PongItem t[]) {
@@ -12,8 +13,12 @@ public class Ball extends PongItem {
 			if (this.collision(t[i]) == true) {
 				setSpeedX(- this.getSpeedX());
 			}
+		} 
+		if (this.getPosX() <= 0 || this.getPosX() >= 800 - this.getWidth()) {
+			setSpeedX(- this.getSpeedX());
 		}
-		if (this.getPosY() == 0 || this.getPosY() == 600) {
+		
+		if (this.getPosY() <= 0 || this.getPosY() >= 600 - this.getHeight()) {
 			setSpeedY(- this.getSpeedY());
 		}
 		
