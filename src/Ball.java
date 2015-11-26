@@ -6,7 +6,11 @@ public class Ball extends PongItem {
 
 	public Ball (String Image,  int posX, int posY){
 		super(Image, posX, posY);
-		this.setSpeedX(2);
+		if(Math.random()>0.5)
+			this.setSpeedX(2);
+		else{
+			this.setSpeedX(-2);
+		}
 		this.setSpeedY(2);
 		
 	}
@@ -17,7 +21,7 @@ public class Ball extends PongItem {
 				setSpeedX(- this.getSpeedX());
 			}
 		} 
-		if (this.getPosX() <= 0 || this.getPosX() >= Pong.SIZE_PONG_X - this.getWidth()) {
+		if ( this.getPosX() >= Pong.SIZE_PONG_X - this.getWidth()) {
 			setSpeedX(- this.getSpeedX());
 		}
 		

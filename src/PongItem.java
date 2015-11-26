@@ -86,7 +86,7 @@ public abstract class PongItem {
 		Rectangle a = new Rectangle (this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
 		Rectangle b = new Rectangle (p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		if(a.intersects(b)){
-			System.out.println("ca collisione");
+			//System.out.println("ca collisione");
 			return true;
 		}
 		return false;

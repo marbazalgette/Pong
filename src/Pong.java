@@ -11,8 +11,10 @@ public class Pong extends JPanel implements KeyListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public static int SCORE_J1 = 0;
 
-
+	public static int SCORE_J2 = 0;
 	/* Width of area */
 	public static final int SIZE_PONG_X = 800;
 
@@ -108,6 +110,13 @@ public class Pong extends JPanel implements KeyListener{
 					//System.out.println("nouvelle position =" + racketGauche.getPosY() );
 				if(racketGauche.getPosY()+racketGauche.getHeight()>SIZE_PONG_Y){
 					racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());
+				}
+				if(ball.getPosX() <= 0 ){
+					SCORE_J2++;
+					System.out.println("Score J2 :" + SCORE_J1);
+					Window.displayScore(getGraphics());
+					ball.setPosY(300);
+					ball.setPosX(400);
 				}
 				updateScreen();
 
