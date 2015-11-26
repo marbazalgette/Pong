@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 public class Pong extends JPanel implements KeyListener{
 	
 	/* Width of area */
-	private static final int SIZE_PONG_X = 800;
+	public static final int SIZE_PONG_X = 800;
 	
 	/*Height of area */
-	private static final int SIZE_PONG_Y = 600;
+	public static final int SIZE_PONG_Y = 600;
 	
 	/*background color or the area*/
 	private static final Color backgroundColor = new Color(0xFF, 0x40, 0);
