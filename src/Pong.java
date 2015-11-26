@@ -27,7 +27,7 @@ public class Pong extends JPanel implements KeyListener{
 	
 	
 	public Pong() {
-		racketGauche = new Racket ("img/ball.png",0,300,4);
+		racketGauche = new Racket ("img/racket.png",0,300,4);
 		ball = new Ball ("img/ball.png",400,300);
 		this.addKeyListener(this);
 	}
