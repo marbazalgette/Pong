@@ -3,6 +3,8 @@ public class Ball extends PongItem {
 		
 	public Ball (String Image,  int posX, int posY){
 		super(Image, posX, posY);
+		this.setSpeedX(2);
+		this.setSpeedY(2);
 	}
 	
 	public void rebound (PongItem t[]) {
@@ -14,6 +16,7 @@ public class Ball extends PongItem {
 		if (this.getPosY() == 0 || this.getPosY() == 600) {
 			setSpeedY(- this.getSpeedY());
 		}
+		
 	}
 }
 

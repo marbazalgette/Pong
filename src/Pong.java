@@ -20,7 +20,7 @@ public class Pong extends JPanel implements KeyListener{
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
-	private Racket racketGauche = new Racket("racket.png", 0, 0, 0);
+	private Racket racketGauche = new Racket("img/racket.png", 0, 0, 0);
 	private PongItem t[] = {racketGauche};
 	
 	private Ball ball = new Ball("ball.png", 0, 0);
@@ -44,6 +44,7 @@ public class Pong extends JPanel implements KeyListener{
 				throw new RuntimeException("no buffer");
 			else
 				graphicContext = buffer.getGraphics();
+		}
 			
 			graphicContext.setColor(backgroundColor);
 			graphicContext.fillRect(0, 0, SIZE_PONG_X, SIZE_PONG_Y);
@@ -51,10 +52,10 @@ public class Pong extends JPanel implements KeyListener{
 			/* Draw Images */
 			graphicContext.drawImage(ball.getSprite(), ball.getPosX(), ball.getPosY(), ball.getWidth(), ball.getHeight(), null);
 			graphicContext.drawImage(racketGauche.getSprite(), racketGauche.getPosX(), racketGauche.getPosY(), racketGauche.getWidth(), racketGauche.getHeight(), null);
-			
+			System.out.println(ball.getPosX());
 			this.repaint();
 		}
-	}
+	
 	
 	public void keyPressed (KeyEvent e) {
 		switch (e.getKeyCode()) {
@@ -89,9 +90,12 @@ public class Pong extends JPanel implements KeyListener{
 	
 	public void animate() {
 				ball.rebound(t);
+				ball.move();
 				//t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
 				updateScreen();
 		}
+	
+	
 	
 
 	
