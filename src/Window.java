@@ -1,4 +1,4 @@
-package pong.gui;
+//package pong.gui;
 
 import javax.swing.JFrame;
 
@@ -31,7 +31,6 @@ public class Window extends JFrame {
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-
 		while(true) {
 			pong.animate();
 			try {

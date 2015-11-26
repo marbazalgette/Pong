@@ -32,6 +32,9 @@ public class Pong extends JPanel implements KeyListener{
 		this.addKeyListener(this);
 	}
 	
+	public void paint(Graphics g) {
+		g.drawImage(buffer, 0, 0, this);
+	}
 
 	
 	public void updateScreen() {
@@ -48,6 +51,8 @@ public class Pong extends JPanel implements KeyListener{
 			/* Draw Images */
 			graphicContext.drawImage(ball.getSprite(), ball.getPosX(), ball.getPosY(), ball.getWidth(), ball.getHeight(), null);
 			graphicContext.drawImage(racketGauche.getSprite(), racketGauche.getPosX(), racketGauche.getPosY(), racketGauche.getWidth(), racketGauche.getHeight(), null);
+			
+			this.repaint();
 		}
 	}
 	
@@ -80,12 +85,11 @@ public class Pong extends JPanel implements KeyListener{
 				System.out.println("got release "+e);
 		}
 	}
-	//
 	public void keyTyped(KeyEvent e) { }
 	
 	public void animate() {
 				ball.rebound(t);
-				t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
+				//t[0].setPosY(t[0].getPosY() + t[0].getSpeedY()); 
 				updateScreen();
 		}
 	

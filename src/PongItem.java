@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Rectangle;
+
 
 import javax.swing.ImageIcon;
 
@@ -80,15 +82,11 @@ public abstract class PongItem {
 		this.sprite = new ImageIcon(sprite);
 	}
 	
-	
-	
-	protected boolean collision(PongItem b){
-		if( ((this.posX + this.width) >= b.posX) && ((this.posY <= (b.posY + b.height)) && (this.posY >= b.posY)) ||
-				(((this.posY + this.height) >= b.posY) && ((this.posY + this.height) <= (b.posY + b.height)))) 
-			return true; 
-		if ( ((this.posX <= (b.posX + b.width)) && ((this.posY <= (b.posY + b.height)) && (this.posY >= b.posY)) ||
-				(((this.posY + this.height) >= b.posY) && ((this.posY + this.height) <= (b.posY + b.height))))) 
-			return true; 
+	protected boolean collision(PongItem p){
+		Rectangle a = new Rectangle (this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
+		Rectangle b = new Rectangle (p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
+		if(a.intersects(b))
+			return true;
 		return false;
 	}
 	
