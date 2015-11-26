@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 public class Pong extends JPanel implements KeyListener{
 	
 	/* Width of area */
-	private static final int SIZE_PONG_X = 800;
+	private final int SIZE_PONG_X = 800;
 	
 	/*Height of area */
 	private static final int SIZE_PONG_Y = 600;
@@ -29,6 +29,7 @@ public class Pong extends JPanel implements KeyListener{
 	public Pong() {
 		racketGauche = new Racket ("img/racket.png",0,300,4);
 		ball = new Ball ("img/ball.png",400,300);
+		PongItem t[] = {ball, racketGauche};
 		this.addKeyListener(this);
 	}
 	
@@ -52,7 +53,6 @@ public class Pong extends JPanel implements KeyListener{
 			/* Draw Images */
 			graphicContext.drawImage(ball.getSprite(), ball.getPosX(), ball.getPosY(), ball.getWidth(), ball.getHeight(), null);
 			graphicContext.drawImage(racketGauche.getSprite(), racketGauche.getPosX(), racketGauche.getPosY(), racketGauche.getWidth(), racketGauche.getHeight(), null);
-			System.out.println(ball.getPosX());
 			this.repaint();
 		}
 	
