@@ -18,6 +18,7 @@ public class Ball extends PongItem {
 		for (int i=1; i<t.size(); i++) {
 			if (this.collision(t.get(i)) == true) {
 				setSpeedX(- this.getSpeedX());
+				setPosX(t.get(i).getPosX() + t.get(i).getWidth());
 			}
 		} 
 		if ( this.getPosX() >= Pong.SIZE_PONG_X - this.getWidth()) {
