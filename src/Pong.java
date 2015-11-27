@@ -113,8 +113,7 @@ public class Pong extends JPanel implements KeyListener{
 				}
 				if(ball.getPosX() <= 0 ){
 					SCORE_J2++;
-					System.out.println("Score J2 :" + SCORE_J1);
-					//Window.displayScore(getGraphics());
+					//System.out.println("Score J2 :" + SCORE_J2);
 					ball.setPosY(300);
 					ball.setPosX(400);
 					ball.setSpeedX(-ball.getSpeedX());

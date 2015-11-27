@@ -29,6 +29,7 @@ public class Window extends JFrame {
 	    g.setFont(font);
 	    g.setColor(Color.white);          
 	    g.drawString("J2: " + Pong.SCORE_J2, 500, 20);
+	    g.drawString("J1: " + Pong.SCORE_J1, 50, 20);
 	}
 	
 	/**
