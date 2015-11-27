@@ -41,7 +41,10 @@ public class Window extends JFrame {
 		add(pong);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		setSize(Pong.SIZE_PONG_X, Pong.SIZE_PONG_Y+30);
+		int borderSizeY = getContentPane().getHeight();
+		int borderSizeX = getContentPane().getWidth();
+		setSize(Pong.SIZE_PONG_X - borderSizeX, Pong.SIZE_PONG_Y - borderSizeY);
+		System.out.println(getContentPane().getWidth());
 		while(true) {
 			//displayScore(getGraphics());
 			pong.animate();
