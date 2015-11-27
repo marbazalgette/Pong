@@ -30,7 +30,6 @@ public class Pong extends JPanel implements KeyListener{
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
-
 	private Racket racketGauche ;//= new Racket("img/racket.png", 0, 0, 0);
 	public static ArrayList <PongItem> t ; //= {ball,racketGauche};
 	
@@ -120,7 +119,11 @@ public class Pong extends JPanel implements KeyListener{
 					ball.setSpeedX(-ball.getSpeedX());
 				}
 				updateScreen();
-
 				//
-	}
+		}
+	
+	
+	
+
+	
 }
