@@ -65,6 +65,11 @@ public class Pong extends JPanel implements KeyListener{
 			/* Draw Images */
 			graphicContext.drawImage(ball.getSprite(), ball.getPosX(), ball.getPosY(), ball.getWidth(), ball.getHeight(), null);
 			graphicContext.drawImage(racketGauche.getSprite(), racketGauche.getPosX(), racketGauche.getPosY(), racketGauche.getWidth(), racketGauche.getHeight(), null);
+			Font font = new Font("Courier", Font.BOLD, 20);
+		    graphicContext.setFont(font);
+		    graphicContext.setColor(Color.white);          
+		    graphicContext.drawString("J2: " + Pong.SCORE_J2, 500, 20);
+		    graphicContext.drawString("J1: " + Pong.SCORE_J1, 50, 20);
 			this.repaint();
 		}
 	
