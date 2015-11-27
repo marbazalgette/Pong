@@ -43,7 +43,7 @@ public class Window extends JFrame {
 		setVisible(true);
 		setSize(Pong.SIZE_PONG_X,Pong.SIZE_PONG_Y);
 		while(true) {
-			displayScore(getGraphics());
+			//displayScore(getGraphics());
 			pong.animate();
 			try {
 				Thread.sleep(pong.timestep);
