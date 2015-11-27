@@ -1,21 +1,26 @@
+import java.util.ArrayList;
+
 
 public class Ball extends PongItem {
 		
 
 	public Ball (String Image,  int posX, int posY){
 		super(Image, posX, posY);
-		this.setSpeedX(4);
-		this.setSpeedY(4);
-		
+		if(Math.random()>0.5)
+			this.setSpeedX(2);
+		else{
+			this.setSpeedX(-2);
+		}
+		this.setSpeedY(2);
 	}
 	
-	public void rebound (PongItem t[]) {
-		for (int i=0; i<t.length; i++) {
-			if (this.collision(t[i]) == true) {
+	public void rebound (ArrayList<PongItem> t) {
+		for (int i=1; i<t.size(); i++) {
+			if (this.collision(t.get(i)) == true) {
 				setSpeedX(- this.getSpeedX());
 			}
 		} 
-		if (this.getPosX() <= 0 || this.getPosX() >= Pong.SIZE_PONG_X - this.getWidth()) {
+		if ( this.getPosX() >= Pong.SIZE_PONG_X - this.getWidth()) {
 			setSpeedX(- this.getSpeedX());
 		}
 		
