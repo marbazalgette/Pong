@@ -27,7 +27,7 @@ public class Window extends JFrame {
 	static public void displayScore(Graphics g){
 		Font font = new Font("Courier", Font.BOLD, 20);
 	    g.setFont(font);
-	    g.setColor(Color.white);          
+	    g.setColor(Color.white);
 	    g.drawString("J2: " + Pong.SCORE_J2, 500, 20);
 	    g.drawString("J1: " + Pong.SCORE_J1, 50, 20);
 	}
