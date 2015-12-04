@@ -9,6 +9,8 @@
 public class Main  {
 	
 	public static void main(String[] args) {
+		StringGetter sg = new StringGetter();
+		sg.getString();
 		Pong pong = new Pong();
 		Window window = new Window(pong);
 		window.displayOnscreen();
