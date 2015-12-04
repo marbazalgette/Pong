@@ -9,8 +9,10 @@
 public class Main  {
 	
 	public static void main(String[] args) {
-		StringGetter sg = new StringGetter();
-		sg.getString();
+		//StringGetter sg = new StringGetter();
+		//sg.getString();
+		Network n = new Network();
+		n.tmp();
 		Pong pong = new Pong();
 		Window window = new Window(pong);
 		window.displayOnscreen();

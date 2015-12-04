@@ -44,7 +44,6 @@ public class Window extends JFrame {
 		int borderSizeY = getContentPane().getHeight(); // = -30  Je sais pas pourquoi elles sont en negatif. 
 		int borderSizeX = getContentPane().getWidth();  // = -10  Et y'avait une erreur sur l'axe X mais on l'a pas remarquée
 		setSize(Pong.SIZE_PONG_X - borderSizeX, Pong.SIZE_PONG_Y - borderSizeY);
-		System.out.println(borderSizeX);
 		while(true) {
 			//displayScore(getGraphics());
 			pong.animate();
