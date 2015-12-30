@@ -9,12 +9,16 @@
 public class Main  {
 	
 	public static void main(String[] args) {
-		//StringGetter sg = new StringGetter();
-		//sg.getString();
-		Network n = new Network();
-		n.tmp();
-		Pong pong = new Pong();
-		Window window = new Window(pong);
-		window.displayOnscreen();
+		
+		Dialog dialog = new Dialog();
+		if (!dialog.firstDialog()) {
+			Pong pong = new Pong();
+			Window window = new Window(pong);
+			window.displayOnscreen();
+		}
+		else {
+			String computerName;
+			computerName = dialog.secondDialog();
+		}
 	}
 }

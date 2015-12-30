@@ -15,10 +15,10 @@ public class Pong extends JPanel implements KeyListener{
 	public static int SCORE_J1 = 0;
 
 	public static int SCORE_J2 = 0;
+	
 	/* Width of area */
 	public static final int SIZE_PONG_X = 800;
 
-	
 	/*Height of area */
 	public static final int SIZE_PONG_Y = 600;
 	
@@ -30,19 +30,22 @@ public class Pong extends JPanel implements KeyListener{
 	private Image buffer = null;
 	
 	private Graphics graphicContext = null;
-	private Racket racketGauche ;//= new Racket("img/racket.png", 0, 0, 0);
-	public static ArrayList <PongItem> t ; //= {ball,racketGauche};
+	private Racket racketGauche;
+	public static ArrayList <PongItem> list;
+	private Ball ball;
+	private Network network;
 	
-	private Ball ball;// = new Ball("ball.png", 0, 0);
 	
 	
 	public Pong() {
+		
 		racketGauche = new Racket ("img/racket.png",0,300,0);
 		ball = new Ball ("img/ball.png",400,300);
-		t = new ArrayList();
-		t.add(ball);
-		t.add(racketGauche);
+		list = new ArrayList<PongItem>();
+		list.add(ball);
+		list.add(racketGauche);
 		this.addKeyListener(this);
+		network = new Network();
 	}
 	
 	public void paint(Graphics g) {
@@ -73,42 +76,42 @@ public class Pong extends JPanel implements KeyListener{
 			this.repaint();
 		}
 	
-	
-	public void keyPressed (KeyEvent e) {
-		switch (e.getKeyCode()) {
-			case KeyEvent.VK_UP:
-			case KeyEvent.VK_KP_UP:
-				racketGauche.setSpeedY(- 4);
-				break;
-			case KeyEvent.VK_DOWN:
-			case KeyEvent.VK_KP_DOWN:
-				racketGauche.setSpeedY(4);
-				break;
-			default:
-				System.out.println("got press "+e);
+		public void keyPressed (KeyEvent e) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_UP:
+				case KeyEvent.VK_KP_UP:
+					racketGauche.setSpeedY(- 4);
+					break;
+				case KeyEvent.VK_DOWN:
+				case KeyEvent.VK_KP_DOWN:
+					racketGauche.setSpeedY(4);
+					break;
+				default:
+					System.out.println("got press "+e);
+			}
 		}
-	}
-	
-	public void keyReleased(KeyEvent e) {
-		switch (e.getKeyCode()) {
-			case KeyEvent.VK_UP:
-			case KeyEvent.VK_KP_UP:
-				racketGauche.setSpeedY(0);
-				break;
-			case KeyEvent.VK_DOWN:
-			case KeyEvent.VK_KP_DOWN:
-				racketGauche.setSpeedY(0);
-				break;
-			default:
-				System.out.println("got release "+e);
+		
+		public void keyReleased(KeyEvent e) {
+			switch (e.getKeyCode()) {
+				case KeyEvent.VK_UP:
+				case KeyEvent.VK_KP_UP:
+					racketGauche.setSpeedY(0);
+					break;
+				case KeyEvent.VK_DOWN:
+				case KeyEvent.VK_KP_DOWN:
+					racketGauche.setSpeedY(0);
+					break;
+				default:
+					System.out.println("got release "+e);
+			}
 		}
-	}
-	public void keyTyped(KeyEvent e) { }
+		public void keyTyped(KeyEvent e) { }
+
 	
 	public void animate() {
-				ball.rebound(t);
-				for (int i =0 ;i<t.size(); i++)
-					t.get(i).move(); 
+				ball.rebound(list);
+				for (int i =0 ;i<list.size(); i++)
+					list.get(i).move(); 
 				if(racketGauche.getPosY()<0)
 					//System.out.println("ancienne position =" + racketGauche.getPosY() );
 					racketGauche.setPosY(0);
