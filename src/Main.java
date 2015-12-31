@@ -17,10 +17,14 @@ public class Main  {
 			window.displayOnscreen();
 		}
 		else {
+			Pong pong = new Pong();
+			Window window = new Window(pong);
 			String computerName;               
 			computerName = dialog.secondDialog();  // on récupère le nom de la machine de l'autre joueur
 			Network network = new Network();     // on créé un serveur socket
-			network.connection(computerName);    // et un client
+			network.connection(computerName); // et un client
+			Racket racketDroite = new Racket("img/racket.png",600,300,0);
+			pong.list.add(racketDroite);
 		}
 	}
 }
