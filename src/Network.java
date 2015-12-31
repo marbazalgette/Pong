@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Network {
 	
@@ -14,6 +15,15 @@ public class Network {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void connection(String s) {
+		try {
+			Socket socket = new Socket(s, port);
 		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 		
 }
