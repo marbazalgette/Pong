@@ -1,11 +1,13 @@
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 public class Network {
 	
 	private ServerSocket server;
-	private Socket client;
+	private Socket player2;
 	private Communication communication;
 	private int port = 15151;
 
@@ -13,23 +15,38 @@ public class Network {
 	public Network() {
 		try {
 			server = new ServerSocket(port);
-			client = server.accept();
-			communication = new Communication(client);
+			server.setSoTimeout(1);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void connection(String s) {
+	public boolean canBeConnected() {
+		Socket tmp = null;
 		try {
-			Socket socket = new Socket(s, port);
+			tmp = server.accept();	
+		}
+		catch (SocketTimeoutException e) {
+			//
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			//
+		}
+		return (tmp != null) && (player2 == null);	
+	}
+	
+	public void connexion(InetAddress adress) {
+		try {
+			player2 = new Socket(adress, port);
+		}
+		catch(IOException e) {
+			//
 		}
 	}
 	
+	
+
 	
 		
 }
