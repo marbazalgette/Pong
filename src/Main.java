@@ -25,6 +25,7 @@ public class Main  {
 			network.connection(computerName); // et un client
 			Racket racketDroite = new Racket("img/racket.png",600,300,0);
 			pong.list.add(racketDroite);
+			
 		}
 	}
 }
