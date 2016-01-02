@@ -8,13 +8,13 @@ public class Communication {
 	private InputStream input;
 	private OutputStream output;
 	private Network network;
-	private Communication communication;
 	private Racket racket;
 	
 	public Communication(Socket s) {
 		try {
 			input = s.getInputStream();
 			output = s.getOutputStream();
+			racket = new Racket ("img/racket.png",0,300,0);
 		}
 		catch (IOException e) {
 			//
@@ -22,8 +22,8 @@ public class Communication {
 	}
 	
 	public void protocol() {
-		this.communication.newPosition(racket, output);
-		this.communication.updatePosition(readStream(input));	
+		this.newPosition(racket, output);
+		this.updatePosition(readStream(input));	
 	}
 	
 	public void newPosition(Racket r, OutputStream output) {

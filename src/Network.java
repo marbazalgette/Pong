@@ -5,12 +5,16 @@ import java.net.Socket;
 public class Network {
 	
 	private ServerSocket server;
+	private Socket client;
+	private Communication communication;
 	private int port = 15151;
 
 	
 	public Network() {
 		try {
 			server = new ServerSocket(port);
+			client = server.accept();
+			communication = new Communication(client);
 		}
 		catch (IOException e) {
 			e.printStackTrace();

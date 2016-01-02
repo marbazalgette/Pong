@@ -23,7 +23,7 @@ public class Pong extends JPanel implements KeyListener{
 	public static final int SIZE_PONG_Y = 600;
 	
 	/*background color or the area*/
-	private static final Color backgroundColor = new Color(0xFF, 0x40, 0);
+	private static final Color backgroundColor = new Color(0xaF, 0x40, 0);
 	
 	public final int timestep = 10;
 	
