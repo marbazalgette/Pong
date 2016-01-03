@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
@@ -70,7 +71,12 @@ public class Pong extends JPanel implements KeyListener{
 		list.add(racketDroite);
 		network = new Network();
 		network.connection(address);
-		player2 = new PlayerCommunication(network);
+		try {
+			player2 = new PlayerCommunication(network);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.addKeyListener(this);
 	}
 	

@@ -17,6 +17,7 @@ public class Main  {
 		Dialog dialog = new Dialog();
 		if (!dialog.firstDialog()) {     // si on veut jouer en solo
 			pong = new Pong();
+			System.out.println("Je joue en solo");
 		
 		}
 		else {
@@ -28,6 +29,7 @@ public class Main  {
 				//
 			}
 			pong = new Pong(player2address);
+			System.out.println("Je joue en multi");
 		}
 		Window window = new Window(pong);
 		window.displayOnscreen();

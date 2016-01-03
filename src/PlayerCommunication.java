@@ -10,9 +10,11 @@ public class PlayerCommunication {
 	private Network net;
 
 	
-	public PlayerCommunication(Network net) {
+	public PlayerCommunication(Network net) throws IOException {
 			input = net.getInputStream();
 			output = net.getOutputStream();
+			System.out.println(output == null);
+			System.out.println(input == null);
 			//racket = new Racket ("img/racket.png",0,300,0);
 		
 	}
@@ -21,7 +23,9 @@ public class PlayerCommunication {
 		StringBuffer strBuff = new StringBuffer();
 		strBuff.append(pos);
 		try {
+			
 			output.write(strBuff.toString().getBytes());
+			
 		}
 		catch (IOException e) {
 			e.printStackTrace();

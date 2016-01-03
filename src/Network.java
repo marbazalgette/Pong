@@ -37,12 +37,15 @@ public class Network {
 		}
 	}
 	
-	public InputStream getInputStream (){
-		return this.is;
+	public InputStream getInputStream () throws IOException{
+		return client.getInputStream();
 	}
 	
-	public OutputStream getOutputStream(){
-		return this.os;
+	public OutputStream getOutputStream() throws IOException{
+	
+			return client.getOutputStream();
+		
+	
 	}
 	
 	
