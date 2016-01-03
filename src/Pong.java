@@ -57,6 +57,7 @@ public class Pong extends JPanel implements KeyListener{
 		list = new ArrayList<PongItem>();
 		list.add(ball);
 		list.add(racketGauche);
+		network = new Network();
 		//list.add(racketDroite);
 		this.addKeyListener(this);
 	}

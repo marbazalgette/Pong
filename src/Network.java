@@ -17,7 +17,8 @@ public class Network {
 	public Network() {
 		try {
 			server = new ServerSocket(port);
-			server.setSoTimeout(1);
+			Socket tmp = server.accept();
+			//server.setSoTimeout(1);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
