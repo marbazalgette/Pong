@@ -21,26 +21,16 @@ public class Main  {
 			window.displayOnscreen();
 		}
 		else {
-			InetAddress player2Address = null;             
+			InetAddress player2address = null;
 			try {
-				player2Address = InetAddress.getByName(dialog.secondDialog()); // on récupère l'ip du player 2
+				player2address.getByName(dialog.secondDialog());
 			}
 			catch (UnknownHostException e) {
-				System.out.println("unknown host");   
-			}            
-			Network network = new Network();  // nouveau network (serveur)
-			if (network.canBeConnected()) {
-				while (!network.connexion(player2Address)) {   // nouveau client
-					System.out.println("en attente d'un ami");
-				}
+				//
 			}
-			else {
-				System.out.println("problème de connexion...");
-			}
-			PlayerCommunication player2 = new PlayerCommunication(network.getPlayer2());
 			Pong pong = new Pong();
-			pong.playerInPong(player2);
-			Window window = new Window(pong);  
+			pong.setPlayer2Address(player2address);
+			pong.play();
 		}
 	}
 }

@@ -8,8 +8,8 @@ public class Network {
 	
 	private ServerSocket server;
 	private Socket player2;
-	private int port = 15168;
-	private boolean isReady = false;
+	private int port = 15173;
+	private boolean canBeConnected = false;
 
 	
 	public Network() {
@@ -29,9 +29,8 @@ public class Network {
 		Socket tmp;
 		try {
 			tmp = server.accept();	
-			System.out.println("bite");
 			if (tmp != null) 
-				isReady = true;
+				canBeConnected = true;
 		}
 		catch (SocketTimeoutException e) {
 			//
@@ -39,19 +38,17 @@ public class Network {
 		catch (IOException e) {
 			//
 		}
-		System.out.println((player2 == null)+ "\n");
-		return isReady || player2 == null;	
+		return canBeConnected || player2 == null;	
 	}
 	
-	public boolean connexion(InetAddress address) {
+	public Socket connection(InetAddress address) {
 		try {
 			player2 = new Socket(address, 12000);
-			return true;
 		}
 		catch(IOException e) {
 			//
 		}
-		return false;
+		return player2;
 	}
 	
 	

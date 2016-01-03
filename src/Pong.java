@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -31,14 +32,20 @@ public class Pong extends JPanel implements KeyListener{
 	
 	private Graphics graphicContext = null;
 	private Racket racketGauche;
+	private Racket racketDroite;
 	public static ArrayList <PongItem> list;
 	private Ball ball;
 	private Network network;
 	private PlayerCommunication player2;
+	private InetAddress player2address;
 	
 	
 	public void playerInPong (PlayerCommunication p) {
 		player2 = p;
+	}
+	
+	public void setPlayer2Address(InetAddress i) {
+		player2address = i;
 	}
 	
 	public Pong() {
@@ -48,14 +55,24 @@ public class Pong extends JPanel implements KeyListener{
 		list = new ArrayList<PongItem>();
 		list.add(ball);
 		list.add(racketGauche);
+		network = new Network();
 		this.addKeyListener(this);
-		//network = new Network();
 	}
 	
 	public void paint(Graphics g) {
 		g.drawImage(buffer, 0, 0, this);
 	}
 
+	public void play() {
+		while (true) {
+			if (network.canBeConnected()) {
+				player2 = new PlayerCommunication(network.connection(player2address));
+				racketDroite = new Racket("img/racket.png",550,300,0);
+				list.add(racketDroite);	
+			}
+			
+		}
+	}
 	
 	public void updateScreen() {
 		if (buffer == null) {
