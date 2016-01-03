@@ -23,7 +23,7 @@ public class Main  {
 		else {
 			InetAddress player2address = null;
 			try {
-				player2address.getByName(dialog.secondDialog());
+				player2address = player2address.getByName(dialog.secondDialog());
 			}
 			catch (UnknownHostException e) {
 				//

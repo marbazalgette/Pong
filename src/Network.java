@@ -42,7 +42,8 @@ public class Network {
 	}
 	
 	public Socket connection(InetAddress address) {
-		try {
+		try {	
+			System.out.println(address);
 			player2 = new Socket(address, 12000);
 		}
 		catch(IOException e) {
