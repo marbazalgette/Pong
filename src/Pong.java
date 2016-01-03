@@ -63,7 +63,7 @@ public class Pong extends JPanel implements KeyListener{
 		g.drawImage(buffer, 0, 0, this);
 	}
 
-	public void play() {
+	/*public void play() {
 		while (true) {
 			if (network.canBeConnected()) {
 				player2 = new PlayerCommunication(network.connection(player2address));
@@ -73,7 +73,7 @@ public class Pong extends JPanel implements KeyListener{
 			
 		}
 	}
-	
+	*/
 	public void updateScreen() {
 		if (buffer == null) {
 			buffer =  createImage(SIZE_PONG_X, SIZE_PONG_Y);

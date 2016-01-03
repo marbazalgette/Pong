@@ -1,16 +1,17 @@
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
+
 public class Network {
 	
 	private ServerSocket server;
-	private Socket player2;
-	private int port = 15173;
-	private boolean canBeConnected = false;
-
+	private int port = 42420;
+	private Socket client;
 	
 	public Network() {
 		try {
@@ -21,14 +22,27 @@ public class Network {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void connection(InetAddress address){
+		try{
+			client = new Socket(address, port);
+			OutputStream os = client.getOutputStream();
+			InputStream is = client.getInputStream();
+			client.close();
+			
+		}
+		catch(IOException e){
+			
+		}
+	}
+/*
 	public Socket getPlayer2() {
 		return this.player2;
 	}
 	public boolean canBeConnected() {
-		Socket tmp;
+		Socket client;
 		try {
-			tmp = server.accept();	
+			client = server.accept();	
 			if (tmp != null) 
 				canBeConnected = true;
 		}
@@ -52,7 +66,7 @@ public class Network {
 		return player2;
 	}
 	
-	
+*/	
 
 	
 		
