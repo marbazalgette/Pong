@@ -51,13 +51,24 @@ public class Pong extends JPanel implements KeyListener{
 	public Pong() {
 		
 		racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
-		racketDroite = new Racket("img/racket.png",SIZE_PONG_X - racketDroite.getWidth() , SIZE_PONG_Y/2, 0);
+		//racketDroite = new Racket("img/racket.png",SIZE_PONG_X - racketDroite.getWidth() , SIZE_PONG_Y/2, 0);
 		ball = new Ball ("img/ball.png",400,300);
 		list = new ArrayList<PongItem>();
 		list.add(ball);
 		list.add(racketGauche);
-		list.add(racketDroite);
+		//list.add(racketDroite);
+		this.addKeyListener(this);
+	}
+	
+	public Pong(InetAddress address) {
+		racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
+		ball = new Ball ("img/ball.png",400,300);
+		list = new ArrayList<PongItem>();
+		list.add(ball);
+		list.add(racketGauche);
 		network = new Network();
+		network.connection(address);
+		player2 = new PlayerCommunication(network);
 		this.addKeyListener(this);
 	}
 	
@@ -122,6 +133,8 @@ public class Pong extends JPanel implements KeyListener{
 
 	
 	public void animate() {
+				racketDroite.setPosY(player2.readRacketPosition());
+				player2.sendRacketPosition(racketGauche.getPosY());
 				ball.rebound(list);
 				for (int i =0 ;i<list.size(); i++) {
 					list.get(i).move(); 
@@ -129,6 +142,13 @@ public class Pong extends JPanel implements KeyListener{
 						racketGauche.setPosY(0);
 					if(racketGauche.getPosY()+racketGauche.getHeight()>SIZE_PONG_Y){
 						racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());
+						
+					}
+					if(racketDroite.getPosY()<0)
+						racketDroite.setPosY(0);
+					if(racketDroite.getPosY()+racketDroite.getHeight()>SIZE_PONG_Y){
+						racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
+						
 					}
 				if(ball.getPosX() <= 0 ){
 					SCORE_J2++;
