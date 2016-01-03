@@ -8,7 +8,7 @@ public class PlayerCommunication {
 	private InputStream input;
 	private OutputStream output;
 	private Network net;
-	private Racket racket;
+
 	
 	public PlayerCommunication(Network net) {
 			input = net.getInputStream();
@@ -17,10 +17,33 @@ public class PlayerCommunication {
 		
 	}
 	
+	public void sendRacketPosition(int pos) {
+		StringBuffer strBuff = new StringBuffer();
+		strBuff.append(pos);
+		try {
+			output.write(strBuff.toString().getBytes());
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int readRacketPosition() {
+		int pos = 0;
+		try {
+			pos = (int)input.read();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return pos;
+	}
+	/*
 	public void protocol() {
 		this.newPosition(racket, output);
 		this.updatePosition(readStream(input));	
 	}
+	
 	
 	public void newPosition(Racket r, OutputStream output) {
 		try {
@@ -49,6 +72,6 @@ public class PlayerCommunication {
 		}
 		return racketPos;
 	}
-		
+*/		
 		
 }
