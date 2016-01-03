@@ -50,11 +50,13 @@ public class Pong extends JPanel implements KeyListener{
 	
 	public Pong() {
 		
-		racketGauche = new Racket ("img/racket.png",0,300,0);
+		racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
+		racketDroite = new Racket("img/racket.png",SIZE_PONG_X - racketDroite.getWidth() , SIZE_PONG_Y/2, 0);
 		ball = new Ball ("img/ball.png",400,300);
 		list = new ArrayList<PongItem>();
 		list.add(ball);
 		list.add(racketGauche);
+		list.add(racketDroite);
 		network = new Network();
 		this.addKeyListener(this);
 	}
@@ -63,17 +65,7 @@ public class Pong extends JPanel implements KeyListener{
 		g.drawImage(buffer, 0, 0, this);
 	}
 
-	/*public void play() {
-		while (true) {
-			if (network.canBeConnected()) {
-				player2 = new PlayerCommunication(network.connection(player2address));
-				racketDroite = new Racket("img/racket.png",550,300,0);
-				list.add(racketDroite);	
-			}
-			
-		}
-	}
-	*/
+	
 	public void updateScreen() {
 		if (buffer == null) {
 			buffer =  createImage(SIZE_PONG_X, SIZE_PONG_Y);
