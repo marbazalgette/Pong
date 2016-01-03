@@ -28,7 +28,7 @@ public class Network {
 			client = new Socket(address, port);
 			OutputStream os = client.getOutputStream();
 			InputStream is = client.getInputStream();
-			client.close();
+			//client.close();
 			
 		}
 		catch(IOException e){
