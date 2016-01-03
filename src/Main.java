@@ -13,12 +13,11 @@ public class Main  {
 	
 	
 	public static void main(String[] args) {
-
+		Pong pong;
 		Dialog dialog = new Dialog();
 		if (!dialog.firstDialog()) {     // si on veut jouer en solo
-			Pong pong = new Pong();
-			Window window = new Window(pong);
-			window.displayOnscreen();
+			pong = new Pong();
+		
 		}
 		else {
 			InetAddress player2address = null;
@@ -28,13 +27,9 @@ public class Main  {
 			catch (UnknownHostException e) {
 				//
 			}
-			Network net = new Network();
-			net.connection(player2address);
-			/*
-			Pong pong = new Pong();
-			pong.setPlayer2Address(player2address);
-			pong.play();
-			*/
+			pong = new Pong(player2address);
 		}
+		Window window = new Window(pong);
+		window.displayOnscreen();
 	}
 }
