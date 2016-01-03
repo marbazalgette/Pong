@@ -133,8 +133,7 @@ public class Pong extends JPanel implements KeyListener{
 
 	
 	public void animate() {
-				racketDroite.setPosY(player2.readRacketPosition());
-				player2.sendRacketPosition(racketGauche.getPosY());
+				
 				ball.rebound(list);
 				for (int i =0 ;i<list.size(); i++) {
 					list.get(i).move(); 
@@ -157,6 +156,8 @@ public class Pong extends JPanel implements KeyListener{
 					ball.setPosX(400);
 					ball.setSpeedX(-ball.getSpeedX());
 				}
+				racketDroite.setPosY(player2.readRacketPosition());
+				player2.sendRacketPosition(racketGauche.getPosY());
 				updateScreen();
 				}
 	}
