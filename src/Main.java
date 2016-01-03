@@ -28,9 +28,13 @@ public class Main  {
 			catch (UnknownHostException e) {
 				//
 			}
+			Network net = new Network();
+			net.connection(player2address);
+			/*
 			Pong pong = new Pong();
 			pong.setPlayer2Address(player2address);
 			pong.play();
+			*/
 		}
 	}
 }
