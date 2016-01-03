@@ -7,18 +7,14 @@ public class PlayerCommunication {
 
 	private InputStream input;
 	private OutputStream output;
-	private Network network;
+	private Network net;
 	private Racket racket;
 	
-	public PlayerCommunication(Socket s) {
-		try {
-			input = s.getInputStream();
-			output = s.getOutputStream();
-			racket = new Racket ("img/racket.png",0,300,0);
-		}
-		catch (IOException e) {
-			//
-		}
+	public PlayerCommunication(Network net) {
+			input = net.getInputStream();
+			output = net.getOutputStream();
+			//racket = new Racket ("img/racket.png",0,300,0);
+		
 	}
 	
 	public void protocol() {

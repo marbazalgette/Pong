@@ -12,7 +12,8 @@ public class Network {
 	private ServerSocket server;
 	private int port = 42420;
 	private Socket client;
-	
+	OutputStream os;
+	InputStream is;
 	public Network() {
 		try {
 			server = new ServerSocket(port);
@@ -26,8 +27,8 @@ public class Network {
 	public void connection(InetAddress address){
 		try{
 			client = new Socket(address, port);
-			OutputStream os = client.getOutputStream();
-			InputStream is = client.getInputStream();
+			os = client.getOutputStream();
+			is = client.getInputStream();
 			//client.close();
 			
 		}
@@ -35,6 +36,16 @@ public class Network {
 			
 		}
 	}
+	
+	public InputStream getInputStream (){
+		return this.is;
+	}
+	
+	public OutputStream getOutputStream(){
+		return this.os;
+	}
+	
+	
 /*
 	public Socket getPlayer2() {
 		return this.player2;
