@@ -62,10 +62,12 @@ public class Pong extends JPanel implements KeyListener{
 	
 	public Pong(InetAddress address) {
 		racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
+		racketDroite = new Racket ("img/racket.png",750,SIZE_PONG_Y/2,0);
 		ball = new Ball ("img/ball.png",400,300);
 		list = new ArrayList<PongItem>();
 		list.add(ball);
 		list.add(racketGauche);
+		list.add(racketDroite);
 		network = new Network();
 		network.connection(address);
 		player2 = new PlayerCommunication(network);
@@ -92,6 +94,7 @@ public class Pong extends JPanel implements KeyListener{
 			/* Draw Images */
 			graphicContext.drawImage(ball.getSprite(), ball.getPosX(), ball.getPosY(), ball.getWidth(), ball.getHeight(), null);
 			graphicContext.drawImage(racketGauche.getSprite(), racketGauche.getPosX(), racketGauche.getPosY(), racketGauche.getWidth(), racketGauche.getHeight(), null);
+			graphicContext.drawImage(racketDroite.getSprite(), racketDroite.getPosX(), racketDroite.getPosY(), racketDroite.getWidth(), racketDroite.getHeight(), null);
 			Font font = new Font("Courier", Font.BOLD, 20);
 		    graphicContext.setFont(font);
 		    graphicContext.setColor(Color.white);          
