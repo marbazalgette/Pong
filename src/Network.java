@@ -8,7 +8,6 @@ public class Network {
 	
 	private ServerSocket server;
 	private Socket player2;
-	private Communication communication;
 	private int port = 15151;
 
 	
@@ -22,8 +21,11 @@ public class Network {
 		}
 	}
 	
+	public Socket getPlayer2() {
+		return this.player2;
+	}
 	public boolean canBeConnected() {
-		Socket tmp = null;
+		/*Socket tmp = null;
 		try {
 			tmp = server.accept();	
 		}
@@ -33,16 +35,18 @@ public class Network {
 		catch (IOException e) {
 			//
 		}
-		return (tmp != null) && (player2 == null);	
+		return (tmp != null) && (player2 == null);	*/return true;
 	}
 	
-	public void connexion(InetAddress adress) {
+	public boolean connexion(InetAddress adress) {
 		try {
 			player2 = new Socket(adress, port);
+			return true;
 		}
 		catch(IOException e) {
 			//
 		}
+		return false;
 	}
 	
 	

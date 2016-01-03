@@ -21,20 +21,25 @@ public class Main  {
 			window.displayOnscreen();
 		}
 		else {
-			Pong pong = new Pong();
-			Window window = new Window(pong);
-			InetAddress player2Address = null;               
-			Network network = new Network();    
+			InetAddress player2Address = null;             
 			try {
-				player2Address.getByName(dialog.secondDialog());	
-				network.connexion(player2Address); 
+				player2Address.getByName(dialog.secondDialog()); // on récupère l'ip du player 2
 			}
 			catch (UnknownHostException e) {
-				//
+				System.out.println("unknown host");   
+			}            
+			Network network = new Network();       // nouveau network (serveur)
+			if (network.canBeConnected()) {
+				while (!network.connexion(player2Address)) {   // nouveau client
+					System.out.println("en attente d'un ami");
+				}
 			}
-			Racket racketDroite = new Racket("img/racket.png",600,300,0);
-			pong.list.add(racketDroite);
-			
+			else {
+				System.out.println("problème de connexion...");
+			}
+			PlayerCommunication Player2 = new PlayerCommunication(network.getPlayer2());
+			Pong pong = new Pong();
+			Window window = new Window(pong);  
 		}
 	}
 }

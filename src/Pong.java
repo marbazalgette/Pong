@@ -34,6 +34,8 @@ public class Pong extends JPanel implements KeyListener{
 	public static ArrayList <PongItem> list;
 	private Ball ball;
 	private Network network;
+	private PlayerCommunication player2;
+	
 	
 	
 	
