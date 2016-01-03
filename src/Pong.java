@@ -39,7 +39,7 @@ public class Pong extends JPanel implements KeyListener{
 	private Network network;
 	private PlayerCommunication player2;
 	private InetAddress player2address;
-	
+	public static boolean solo;
 	
 	public void playerInPong (PlayerCommunication p) {
 		player2 = p;
@@ -60,6 +60,7 @@ public class Pong extends JPanel implements KeyListener{
 		network = new Network();
 		//list.add(racketDroite);
 		this.addKeyListener(this);
+		solo = true;
 	}
 	
 	public Pong(InetAddress address) {
@@ -79,6 +80,7 @@ public class Pong extends JPanel implements KeyListener{
 			e.printStackTrace();
 		}
 		this.addKeyListener(this);
+		solo = false;
 	}
 	
 	public void paint(Graphics g) {
@@ -101,7 +103,8 @@ public class Pong extends JPanel implements KeyListener{
 			/* Draw Images */
 			graphicContext.drawImage(ball.getSprite(), ball.getPosX(), ball.getPosY(), ball.getWidth(), ball.getHeight(), null);
 			graphicContext.drawImage(racketGauche.getSprite(), racketGauche.getPosX(), racketGauche.getPosY(), racketGauche.getWidth(), racketGauche.getHeight(), null);
-			graphicContext.drawImage(racketDroite.getSprite(), racketDroite.getPosX(), racketDroite.getPosY(), racketDroite.getWidth(), racketDroite.getHeight(), null);
+			if(!solo)
+				graphicContext.drawImage(racketDroite.getSprite(), racketDroite.getPosX(), racketDroite.getPosY(), racketDroite.getWidth(), racketDroite.getHeight(), null);
 			Font font = new Font("Courier", Font.BOLD, 20);
 		    graphicContext.setFont(font);
 		    graphicContext.setColor(Color.white);          
@@ -153,11 +156,12 @@ public class Pong extends JPanel implements KeyListener{
 						racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());
 						
 					}
-					if(racketDroite.getPosY()<0)
-						racketDroite.setPosY(0);
-					if(racketDroite.getPosY()+racketDroite.getHeight()>SIZE_PONG_Y){
-						racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
-						
+					if(!solo){
+						if(racketDroite.getPosY()<0)
+							racketDroite.setPosY(0);
+						if(racketDroite.getPosY()+racketDroite.getHeight()>SIZE_PONG_Y){
+							racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
+						}
 					}
 				if(ball.getPosX() <= 0 ){
 					SCORE_J2++;
@@ -166,9 +170,10 @@ public class Pong extends JPanel implements KeyListener{
 					ball.setPosX(400);
 					ball.setSpeedX(-ball.getSpeedX());
 				}
+				if(!solo){
 				player2.sendRacketPosition(racketGauche.getPosY());
 				racketDroite.setPosY(player2.readRacketPosition());
-				
+				}
 				updateScreen();
 				}
 	}
