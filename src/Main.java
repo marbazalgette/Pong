@@ -13,7 +13,7 @@ public class Main  {
 	
 	
 	public static void main(String[] args) {
-		
+
 		Dialog dialog = new Dialog();
 		if (!dialog.firstDialog()) {     // si on veut jouer en solo
 			Pong pong = new Pong();
@@ -23,12 +23,12 @@ public class Main  {
 		else {
 			InetAddress player2Address = null;             
 			try {
-				player2Address.getByName(dialog.secondDialog()); // on récupère l'ip du player 2
+				player2Address = InetAddress.getByName(dialog.secondDialog()); // on récupère l'ip du player 2
 			}
 			catch (UnknownHostException e) {
 				System.out.println("unknown host");   
 			}            
-			Network network = new Network();       // nouveau network (serveur)
+			Network network = new Network();  // nouveau network (serveur)
 			if (network.canBeConnected()) {
 				while (!network.connexion(player2Address)) {   // nouveau client
 					System.out.println("en attente d'un ami");
@@ -37,8 +37,9 @@ public class Main  {
 			else {
 				System.out.println("problème de connexion...");
 			}
-			PlayerCommunication Player2 = new PlayerCommunication(network.getPlayer2());
+			PlayerCommunication player2 = new PlayerCommunication(network.getPlayer2());
 			Pong pong = new Pong();
+			pong.playerInPong(player2);
 			Window window = new Window(pong);  
 		}
 	}
