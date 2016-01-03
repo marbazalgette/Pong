@@ -52,13 +52,13 @@ public class Pong extends JPanel implements KeyListener{
 	public Pong() {
 		
 		racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
-		//racketDroite = new Racket("img/racket.png",SIZE_PONG_X - racketDroite.getWidth() , SIZE_PONG_Y/2, 0);
+		racketDroite = new Racket("img/racket.png",SIZE_PONG_X - racketDroite.getWidth() , SIZE_PONG_Y/2, 0);
 		ball = new Ball ("img/ball.png",400,300);
 		list = new ArrayList<PongItem>();
 		list.add(ball);
 		list.add(racketGauche);
 		network = new Network();
-		//list.add(racketDroite);
+		list.add(racketDroite);
 		this.addKeyListener(this);
 		solo = true;
 	}
@@ -171,6 +171,12 @@ public class Pong extends JPanel implements KeyListener{
 					ball.setSpeedX(-ball.getSpeedX());
 				}
 				if(!solo){
+					try {
+						player2 = new PlayerCommunication(network);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				player2.sendRacketPosition(racketGauche.getPosY());
 				racketDroite.setPosY(player2.readRacketPosition());
 				}
