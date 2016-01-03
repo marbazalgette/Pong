@@ -18,6 +18,7 @@ public class Network {
 		try {
 			server = new ServerSocket(port);
 			Socket tmp = server.accept();
+			Pong.solo = false;
 			//server.setSoTimeout(1);
 		}
 		catch (IOException e) {
