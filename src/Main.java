@@ -26,7 +26,7 @@ public class Main  {
 				player2address = player2address.getByName(dialog.secondDialog());
 			}
 			catch (UnknownHostException e) {
-				//
+				e.printStackTrace();
 			}
 			pong = new Pong(player2address);
 			System.out.println("Je joue en multi");
