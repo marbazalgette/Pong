@@ -40,7 +40,7 @@ public class Dialog extends JFrame{
 	  
 	  String thirdDialog() {
 	 		return JOptionPane.showInputDialog(this, 
-	 				"veuillez entrer le nom de la machine avec laquelle vous voulez vous connecter");
+	 				"veuillez entrer le nom ou l'adresse IP de la machine avec laquelle vous voulez vous connecter");
 	 	}
 	  	 
 }
