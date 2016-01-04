@@ -17,8 +17,10 @@ public class Network {
 	public Network() {
 		try {
 			server = new ServerSocket(port);
-			Socket tmp = server.accept();
-			Pong.solo = false;
+			if (Pong.solo) {
+				Socket tmp = server.accept();
+				//Pong.solo = false;
+			}
 			//server.setSoTimeout(1);
 		}
 		catch (IOException e) {
@@ -31,6 +33,10 @@ public class Network {
 			client = new Socket(address, port);
 			os = client.getOutputStream();
 			is = client.getInputStream();
+			if (!Pong.solo) {
+				Socket tmp = server.accept();
+			}
+			Pong.solo = false;
 			//client.close();
 			
 		}

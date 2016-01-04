@@ -51,8 +51,9 @@ public class Pong extends JPanel implements KeyListener{
 	
 	public Pong() {
 		
+		solo = true;
 		racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
-		racketDroite = new Racket("img/racket.png",SIZE_PONG_X - racketDroite.getWidth() , SIZE_PONG_Y/2, 0);
+		racketDroite = new Racket("img/racket.png",750 , SIZE_PONG_Y/2, 0);
 		ball = new Ball ("img/ball.png",400,300);
 		list = new ArrayList<PongItem>();
 		list.add(ball);
@@ -60,10 +61,11 @@ public class Pong extends JPanel implements KeyListener{
 		network = new Network();
 		list.add(racketDroite);
 		this.addKeyListener(this);
-		solo = true;
 	}
 	
 	public Pong(InetAddress address) {
+		
+		solo = false;
 		racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
 		racketDroite = new Racket ("img/racket.png",750,SIZE_PONG_Y/2,0);
 		ball = new Ball ("img/ball.png",400,300);
@@ -80,7 +82,7 @@ public class Pong extends JPanel implements KeyListener{
 			e.printStackTrace();
 		}
 		this.addKeyListener(this);
-		solo = false;
+
 	}
 	
 	public void paint(Graphics g) {
