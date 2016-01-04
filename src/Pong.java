@@ -149,47 +149,47 @@ public class Pong extends JPanel implements KeyListener{
 		public void keyTyped(KeyEvent e) { }
 
 	
-	public void animate() {
-		if(!solo){
-			try {
-				player2 = new PlayerCommunication(network);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			player2.sendRacketPosition(racketGauche.getPosY());
-				racketDroite.setPosY(player2.readRacketPosition());
-				ball.rebound(list);
-				for (int i =0 ;i<list.size(); i++) {
-					list.get(i).move(); 
-					if(racketGauche.getPosY()<0)
-						racketGauche.setPosY(0);
-					if(racketGauche.getPosY()+racketGauche.getHeight()>SIZE_PONG_Y){
-						racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());
-						
-					}
-					if(!solo){
-						if(racketDroite.getPosY()<0)
-							racketDroite.setPosY(0);
-						if(racketDroite.getPosY()+racketDroite.getHeight()>SIZE_PONG_Y){
-							racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
+		public void animate() {
+			if(!solo){
+				try {
+					player2 = new PlayerCommunication(network);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				player2.sendRacketPosition(racketGauche.getPosY());
+					racketDroite.setPosY(player2.readRacketPosition());
+					ball.rebound(list);
+					for (int i =0 ;i<list.size(); i++) {
+						list.get(i).move(); 
+						if(racketGauche.getPosY()<0)
+							racketGauche.setPosY(0);
+						if(racketGauche.getPosY()+racketGauche.getHeight()>SIZE_PONG_Y){
+							racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());
+							
 						}
+						if(!solo){
+							if(racketDroite.getPosY()<0)
+								racketDroite.setPosY(0);
+							if(racketDroite.getPosY()+racketDroite.getHeight()>SIZE_PONG_Y){
+								racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
+							}
+						}
+					if(ball.getPosX() <= 0 ){
+						SCORE_J2++;
+						//System.out.println("Score J2 :" + SCORE_J2);
+						ball.setPosY(300);
+						ball.setPosX(400);
+						ball.setSpeedX(-ball.getSpeedX());
 					}
-				if(ball.getPosX() <= 0 ){
-					SCORE_J2++;
-					//System.out.println("Score J2 :" + SCORE_J2);
-					ball.setPosY(300);
-					ball.setPosX(400);
-					ball.setSpeedX(-ball.getSpeedX());
-				}
-
-				//player2.sendRacketPosition(racketGauche.getPosY());
-				//racketDroite.setPosY(player2.readRacketPosition());
-				//racketDroite.setPosX(750);
-				}
-				updateScreen();
-				}
-	}
+	
+					//player2.sendRacketPosition(racketGauche.getPosY());
+					//racketDroite.setPosY(player2.readRacketPosition());
+					//racketDroite.setPosX(750);
+					}
+					updateScreen();
+					}
+		}
 	
 	
 

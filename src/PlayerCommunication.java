@@ -27,7 +27,7 @@ public class PlayerCommunication {
 			
 			osw.write(pos);
 			//System.out.println(output);
-			output.flush();
+			osw.flush();
 			
 		}
 		catch (IOException e) {
