@@ -19,7 +19,7 @@ public class Main  {
 			Pong.solo = true;
 			pong = new Pong();
 		}
-		else if (!dialog.secondDialog()) {     // si on veut jouer en solo
+		else if (dialog.secondDialog()) {     // si on veut jouer en solo
 			pong = new Pong();
 			System.out.println("Je joue en solo");
 		
