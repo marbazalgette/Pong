@@ -5,19 +5,21 @@ public class Ball extends PongItem {
 		
 
 	public Ball (String Image,  int posX, int posY, boolean j1){
+		
 		super(Image, posX, posY);
 		/*if(Math.random()>0.5)
 			this.setSpeedX(2);
 		else{
 			this.setSpeedX(-2);
 		}*/
+		System.out.println(j1);
 		if (j1) {
-			this.setSpeedX(4);
-			this.setSpeedY(4);
+			this.setSpeedX(2);
+			this.setSpeedY(2);
 		}
 		else {
-			this.setSpeedX(-4);
-			this.setSpeedY(-4);
+			this.setSpeedX(-2);
+			this.setSpeedY(-2);
 		}
 	}
 	

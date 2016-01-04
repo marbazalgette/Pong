@@ -12,6 +12,7 @@ public class Pong extends JPanel implements KeyListener{
 	/**
 	 * 
 	 */
+	int i = 0;
 	private static final long serialVersionUID = 1L;
 	
 	public static int SCORE_J1 = 0;
@@ -121,11 +122,11 @@ public class Pong extends JPanel implements KeyListener{
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_UP:
 				case KeyEvent.VK_KP_UP:
-					racketGauche.setSpeedY(-7);
+					racketGauche.setSpeedY(-4);
 					break;
 				case KeyEvent.VK_DOWN:
 				case KeyEvent.VK_KP_DOWN:
-					racketGauche.setSpeedY(7);
+					racketGauche.setSpeedY(4);
 					break;
 				default:
 					System.out.println("got press "+e);
@@ -193,6 +194,8 @@ public class Pong extends JPanel implements KeyListener{
 					//racketDroite.setPosY(player2.readRacketPosition());
 					//racketDroite.setPosX(750);
 					}
+					i++;
+					System.out.println(i+" x: " + ball.getPosX() + " y: " + ball.getPosY() );
 					updateScreen();
 					}
 		}

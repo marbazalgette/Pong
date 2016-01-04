@@ -40,7 +40,7 @@ public class PlayerCommunication {
 		int pos = 0;
 		try {
 			pos = isr.read();
-			System.out.println("pos : " + pos);
+			//System.out.println("pos : " + pos);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
