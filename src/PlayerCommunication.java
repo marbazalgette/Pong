@@ -25,6 +25,8 @@ public class PlayerCommunication {
 		try {
 			
 			output.write(strBuff.toString().getBytes());
+			System.out.println(strBuff.toString());
+			output.flush();
 			
 		}
 		catch (IOException e) {
@@ -36,6 +38,7 @@ public class PlayerCommunication {
 		int pos = 0;
 		try {
 			pos = (int)input.read();
+			System.out.println(pos);
 		}
 		catch (IOException e) {
 			e.printStackTrace();

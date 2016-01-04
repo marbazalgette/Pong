@@ -21,6 +21,7 @@ public class Network {
 			if (Pong.solo) {
 				client = server.accept();
 				//Pong.solo = false;
+				Pong.solo = false;
 			}
 			//server.setSoTimeout(1);
 		}

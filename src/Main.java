@@ -31,7 +31,7 @@ public class Main  {
 			pong = new Pong(player2address);
 			System.out.println("Je joue en multi");
 		}
-		//Window window = new Window(pong);
-		//window.displayOnscreen();
+		Window window = new Window(pong);
+		window.displayOnscreen();
 	}
 }

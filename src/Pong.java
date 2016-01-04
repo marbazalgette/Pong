@@ -76,7 +76,7 @@ public class Pong extends JPanel implements KeyListener{
 		network = new Network();
 		//System.out.println(network.getConnectedAddress() + "bite");
 		//network.connection(network.getConnectedAddress());
-		//network.connection(address);
+		network.connection(address);
 		try {
 			player2 = new PlayerCommunication(network);
 		} catch (IOException e) {
@@ -150,7 +150,14 @@ public class Pong extends JPanel implements KeyListener{
 
 	
 	public void animate() {
-				
+		if(!solo){
+			try {
+				player2 = new PlayerCommunication(network);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				racketDroite.setPosY(player2.readRacketPosition());
 				ball.rebound(list);
 				for (int i =0 ;i<list.size(); i++) {
 					list.get(i).move(); 
@@ -174,15 +181,11 @@ public class Pong extends JPanel implements KeyListener{
 					ball.setPosX(400);
 					ball.setSpeedX(-ball.getSpeedX());
 				}
-				if(!solo){
-					try {
-						player2 = new PlayerCommunication(network);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+
+					System.out.println("instanciation du p2");
 				player2.sendRacketPosition(racketGauche.getPosY());
-				racketDroite.setPosY(player2.readRacketPosition());
+			//	racketDroite.setPosY(player2.readRacketPosition());
+				racketDroite.setPosX(750);
 				}
 				updateScreen();
 				}
