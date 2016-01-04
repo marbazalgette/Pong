@@ -28,6 +28,10 @@ public class Network {
 		}
 	}
 	
+	public InetAddress getConnectedAddress() {
+		return server.getInetAddress();
+	}
+	
 	public void connection(InetAddress address){
 		try{
 			client = new Socket(address, port);
