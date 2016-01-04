@@ -31,7 +31,11 @@ public class Ball extends PongItem {
 			}
 		} 
 		
-		
+		if (Pong.solo) {
+			if (this.getPosX() >= Pong.SIZE_PONG_X - this.getHeight()) {
+				setSpeedX(- this.getSpeedX());
+			}
+		}
 		if (this.getPosY() <= 0 || this.getPosY() >= Pong.SIZE_PONG_Y - this.getHeight()) {
 			setSpeedY(- this.getSpeedY());
 			//System.out.println(this.getHeight());

@@ -15,7 +15,11 @@ public class Main  {
 	public static void main(String[] args) {
 		Pong pong;
 		Dialog dialog = new Dialog();
-		if (!dialog.firstDialog()) {     // si on veut jouer en solo
+		if (!dialog.firstDialog()) {
+			Pong.solo = true;
+			pong = new Pong();
+		}
+		else if (!dialog.secondDialog()) {     // si on veut jouer en solo
 			pong = new Pong();
 			System.out.println("Je joue en solo");
 		
@@ -23,7 +27,7 @@ public class Main  {
 		else {
 			InetAddress player2address = null;
 			try {
-				player2address = player2address.getByName(dialog.secondDialog());
+				player2address = player2address.getByName(dialog.thirdDialog());
 			}
 			catch (UnknownHostException e) {
 				e.printStackTrace();
