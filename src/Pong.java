@@ -157,6 +157,7 @@ public class Pong extends JPanel implements KeyListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			player2.sendRacketPosition(racketGauche.getPosY());
 				racketDroite.setPosY(player2.readRacketPosition());
 				ball.rebound(list);
 				for (int i =0 ;i<list.size(); i++) {
@@ -182,10 +183,9 @@ public class Pong extends JPanel implements KeyListener{
 					ball.setSpeedX(-ball.getSpeedX());
 				}
 
-					System.out.println("instanciation du p2");
-				player2.sendRacketPosition(racketGauche.getPosY());
-			//	racketDroite.setPosY(player2.readRacketPosition());
-				racketDroite.setPosX(750);
+				//player2.sendRacketPosition(racketGauche.getPosY());
+				//racketDroite.setPosY(player2.readRacketPosition());
+				//racketDroite.setPosX(750);
 				}
 				updateScreen();
 				}

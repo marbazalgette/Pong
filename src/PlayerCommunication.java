@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class PlayerCommunication {
@@ -20,12 +22,11 @@ public class PlayerCommunication {
 	}
 	
 	public void sendRacketPosition(int pos) {
-		StringBuffer strBuff = new StringBuffer();
-		strBuff.append(pos);
+		OutputStreamWriter osw = new OutputStreamWriter(output);
 		try {
 			
-			output.write(strBuff.toString().getBytes());
-			System.out.println(strBuff.toString());
+			osw.write(pos);
+			//System.out.println(output);
 			output.flush();
 			
 		}
@@ -35,10 +36,11 @@ public class PlayerCommunication {
 	}
 	
 	public int readRacketPosition() {
+		InputStreamReader isr = new InputStreamReader(input);
 		int pos = 0;
 		try {
-			pos = (int)input.read();
-			System.out.println(pos);
+			pos = isr.read();
+			System.out.println("pos : " + pos);
 		}
 		catch (IOException e) {
 			e.printStackTrace();
