@@ -1,4 +1,3 @@
-//package pong.gui;
 
 import java.awt.*;
 
@@ -41,11 +40,10 @@ public class Window extends JFrame {
 		add(pong);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		int borderSizeY = getContentPane().getHeight(); // = -30  Je sais pas pourquoi elles sont en negatif. 
-		int borderSizeX = getContentPane().getWidth();  // = -10  Et y'avait une erreur sur l'axe X mais on l'a pas remarquée
+		int borderSizeY = getContentPane().getHeight(); 
+		int borderSizeX = getContentPane().getWidth();  
 		setSize(Pong.SIZE_PONG_X - borderSizeX, Pong.SIZE_PONG_Y - borderSizeY);
 		while(true) {
-			//displayScore(getGraphics());
 			pong.animate();
 			try {
 				Thread.sleep(pong.timestep);
