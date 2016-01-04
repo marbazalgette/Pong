@@ -182,7 +182,13 @@ public class Pong extends JPanel implements KeyListener{
 						ball.setPosX(400);
 						ball.setSpeedX(-ball.getSpeedX());
 					}
-	
+					if(ball.getPosX() >= SIZE_PONG_X ){
+						SCORE_J1++;
+						//System.out.println("Score J2 :" + SCORE_J2);
+						ball.setPosY(300);
+						ball.setPosX(400);
+						ball.setSpeedX(-ball.getSpeedX());
+					}
 					//player2.sendRacketPosition(racketGauche.getPosY());
 					//racketDroite.setPosY(player2.readRacketPosition());
 					//racketDroite.setPosX(750);

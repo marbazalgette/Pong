@@ -22,9 +22,7 @@ public class Ball extends PongItem {
 				setPosX(t.get(i).getPosX() + t.get(i).getWidth());
 			}
 		} 
-		if ( this.getPosX() >= Pong.SIZE_PONG_X - this.getWidth()) {
-			setSpeedX(- this.getSpeedX());
-		}
+		
 		
 		if (this.getPosY() <= 0 || this.getPosY() >= Pong.SIZE_PONG_Y - this.getHeight()) {
 			setSpeedY(- this.getSpeedY());
