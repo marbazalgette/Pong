@@ -3,15 +3,9 @@ import java.util.ArrayList;
 
 public class Ball extends PongItem {
 		
-
+/* Constructeur de l'objet balle */
 	public Ball (String Image,  int posX, int posY, boolean j1){
-		
 		super(Image, posX, posY);
-		/*if(Math.random()>0.5)
-			this.setSpeedX(2);
-		else{
-			this.setSpeedX(-2);
-		}*/
 		System.out.println(j1);
 		if (j1) {
 			this.setSpeedX(2);
@@ -23,6 +17,7 @@ public class Ball extends PongItem {
 		}
 	}
 	
+	/* Fait rebondir la balle notament sur l'ensemble des PongItem du Pong */
 	public void rebound (ArrayList<PongItem> t) {
 		for (int i=1; i<t.size(); i++) {
 			if (this.collision(t.get(i)) == true) {
@@ -31,14 +26,14 @@ public class Ball extends PongItem {
 			}
 		} 
 		
-		if (Pong.solo) {
+		if (Pong.solo) { /* permet à la balle de rebondir sur le "mur" de droite si on joue en solo */
 			if (this.getPosX() >= Pong.SIZE_PONG_X - this.getHeight()) {
 				setSpeedX(- this.getSpeedX());
 			}
 		}
+		/* Permet à la balle de rebondir sur les mur du haut et du bas */
 		if (this.getPosY() <= 0 || this.getPosY() >= Pong.SIZE_PONG_Y - this.getHeight()) {
 			setSpeedY(- this.getSpeedY());
-			//System.out.println(this.getHeight());
 		}
 		
 	}

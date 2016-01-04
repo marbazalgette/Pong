@@ -2,27 +2,29 @@
 import java.awt.*;
 
 import javax.swing.JFrame;
-/**
- * A Window is a Java frame containing an Pong
+/*
+  L'objet Window hérite des Jframes et contient le pong qui va être affiché
  */
 public class Window extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Pong component to be displayed
+	/*
+	  Pong qui va être affiché
 	 */
 	private final Pong pong;
 
-	/**
-	 * Constructor
+	/*
+	 *  Constructeur de l'objet Pong
 	 */
 	public Window(Pong pong) {
 		this.pong = pong;
 		this.addKeyListener(pong);
 		
 	}
-
+/*
+ * Methode permettant d'afficher les scores 
+ */
 	static public void displayScore(Graphics g){
 		Font font = new Font("Courier", Font.BOLD, 20);
 	    g.setFont(font);
@@ -31,9 +33,8 @@ public class Window extends JFrame {
 	    g.drawString("J1: " + Pong.SCORE_J1, 50, 20);
 	}
 	
-	/**
-	 * Displays the Window using the defined margins, and call the
-	 * {@link Pong#animate()} method of the {@link Pong} every 100ms
+	/*
+	 * Methode permettant d'afficher dans la fenetre l'item Pong en rappelant tout les "timestep" la méthode animate de Pong
 	 */
 	
 	public void displayOnscreen() {

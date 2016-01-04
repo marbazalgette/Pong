@@ -12,12 +12,12 @@ public class Network {
 	private Socket client;
 	OutputStream os;
 	InputStream is;
-	
+	/* Constructeur de l'objet NetWork */
 	public Network() {
 		try {
 			server = new ServerSocket(port);
 			if (Pong.host) {
-				client = server.accept();
+				client = server.accept(); /* Si l'on choisie d'être host le ServerSocket ce met en écoute */
 				Pong.host = false;
 			}
 		}
@@ -26,7 +26,7 @@ public class Network {
 		}
 	}
 	
-	
+	/*Permet au joueur non host de se connecter au ServerSocket en écoute */
 	public void connection(InetAddress address){
 		try{
 			client = new Socket(address, port);

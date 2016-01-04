@@ -9,15 +9,13 @@ public class PlayerCommunication {
 	private InputStream input;
 	private OutputStream output;
 
-	
+	/* Constructeur de PlayerCommunication qui récupère les InputStream et OutputStream à partir de l'objet Network */
 	public PlayerCommunication(Network net) throws IOException {
 			input = net.getInputStream();
 			output = net.getOutputStream();
-			System.out.println(output == null);
-			System.out.println(input == null);
 		
 	}
-	
+	/* Méthode permettant d'envoyer la position de la raquette controlé par le joueur */
 	public void sendRacketPosition(int pos) {
 		OutputStreamWriter osw = new OutputStreamWriter(output);
 		try {
@@ -31,6 +29,7 @@ public class PlayerCommunication {
 		}
 	}
 	
+	/* Méthode permettant de récupérer la position de la raquette de l'adversaire */
 	public int readRacketPosition() {
 		InputStreamReader isr = new InputStreamReader(input);
 		int pos = 0;

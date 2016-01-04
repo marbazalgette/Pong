@@ -1,19 +1,17 @@
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-//package pong;
 
-//import pong.gui.Window;
-//import Pong.java;
 
-/**
- * Starting point of the Pong application
- */
+
 public class Main  {
 	
 	
 	public static void main(String[] args) {
-		Pong pong;
+		Pong pong; 
+		/*
+		 * affiche l'ensemble des fenetres permettant de jouer en solo ou non et d'etre hote ou non
+		 */
 		Dialog dialog = new Dialog();
 		if (!dialog.firstDialog()) {
 			Pong.solo = true;

@@ -38,11 +38,11 @@
 		private Ball ball;
 		private Network network;
 		private PlayerCommunication player2;
-		public static boolean host;
+		public static boolean host = true;
 		public static boolean solo;
 		
 		
-		
+		/*constructeur utilisé lors du jeu solo ou par l'host de la partie */
 		public Pong() {
 			
 			racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
@@ -57,17 +57,8 @@
 				list.add(racketDroite);
 				network = new Network();
 			}
-			/*racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
-			racketDroite = new Racket("img/racket.png",SIZE_PONG_X - racketGauche.getWidth() , SIZE_PONG_Y/2, 0);
-			ball = new Ball ("img/ball.png",400,300, host);
-			list = new ArrayList<PongItem>();
-			list.add(ball);
-			list.add(racketGauche);
-			network = new Network();
-			list.add(racketDroite);
-			this.addKeyListener(this);*/
 		}
-		
+		/*constructeur utilisé par la personne qui se connecte */
 		public Pong(InetAddress address) {
 			
 			host = false;
@@ -94,7 +85,7 @@
 			g.drawImage(buffer, 0, 0, this);
 		}
 	
-		
+		/*met à jour l'intégralité des éléments graphique */
 		public void updateScreen() {
 			if (buffer == null) {
 				buffer =  createImage(SIZE_PONG_X, SIZE_PONG_Y);
@@ -119,7 +110,7 @@
 			    graphicContext.drawString("J1: " + Pong.SCORE_J1, 50, 20);
 				this.repaint();
 			}
-		
+		/* augmente la vitesse de la rackette lorsque l'on appuie sur une flèche */
 			public void keyPressed (KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_UP:
@@ -134,7 +125,7 @@
 						System.out.println("got press "+e);
 				}
 			}
-			
+			/* remet à 0 la vitesse de la rackette lorsque la flèche est relachée */
 			public void keyReleased(KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_UP:
@@ -151,19 +142,19 @@
 			}
 			public void keyTyped(KeyEvent e) { }
 	
-		
+		/* boucle principale qui met à jour l'ensemble des éléments du Pong */
 			public void animate() {
 				if(!host){
 					if (!solo) {
 					try {
-						player2 = new PlayerCommunication(network);
+						player2 = new PlayerCommunication(network); /*met à jour les InputStream et OutputStream */
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					player2.sendRacketPosition(racketGauche.getPosY());
-						racketDroite.setPosY(player2.readRacketPosition());
+					player2.sendRacketPosition(racketGauche.getPosY()); /*Envoie la nouvelle position de la Rackette */
+						racketDroite.setPosY(player2.readRacketPosition()); /* Met à jour la position de la Rackette de l'adversaire */
 					}
-						ball.rebound(list);
+						ball.rebound(list); 
 						for (int i =0 ;i<list.size(); i++) {
 							list.get(i).move(); 
 							if(racketGauche.getPosY()<0)
@@ -179,7 +170,9 @@
 									racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
 								}
 							}
-						if(ball.getPosX() <= 0){
+							
+							/* Permet de voir si un but a été marqué et remet la balle en jeu */
+						if(ball.getPosX() <= 0){ 
 							SCORE_J2++;
 							ball.setPosY(300);
 							ball.setPosX(400);
@@ -191,7 +184,7 @@
 							ball.setPosX(400);
 							ball.setSpeedX(-ball.getSpeedX());
 						}
-						}updateScreen();
+						}updateScreen(); 
 						}
 			}
 		

@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.Rectangle;
 
@@ -6,15 +5,19 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public abstract class PongItem {
-	
+	/*
+	 ensemble des paramètres commun à l'ensembles des objets d'un Pong
+	 */
 	protected int posX;
 	protected int posY;
 	protected int width;
 	protected int height;
 	protected int speedX;
 	protected int speedY;
-	protected ImageIcon sprite; // a débattre
-	
+	protected ImageIcon sprite;
+	/*
+	 Constructeur de l'objet Pong
+	 */
 	protected PongItem (String Image, int posX, int posY){
 		this.sprite = new ImageIcon(Image);
 		this.posX = posX;
@@ -24,7 +27,9 @@ public abstract class PongItem {
 		this.speedX = 0;
 		this.speedY = 0;
 	}
-	
+	/*
+	 Ensemble des getter et setter 
+	 */
 
 	public int getPosX() {
 		return posX;
@@ -82,16 +87,21 @@ public abstract class PongItem {
 		this.sprite = new ImageIcon(sprite);
 	}
 	
+	/*
+	 Methode permettant de gérer les collisions à l'aide de hitbox 
+	 */
 	protected boolean collision(PongItem p){
 		Rectangle a = new Rectangle (this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
 		Rectangle b = new Rectangle (p.getPosX(), p.getPosY(), p.getWidth(), p.getHeight());
 		if(a.intersects(b)){
-			//System.out.println("ca collisione");
 			return true;
 		}
 		return false;
 	}
 	
+	/*
+	 Méthode permettant de bouger un PongItem
+	 */
 	protected void move(){
 		posX += speedX;
 		posY += speedY;
