@@ -19,9 +19,9 @@ public class Window extends JFrame {
 	 */
 	public Window(Pong pong) {
 		this.pong = pong;
-		this.addKeyListener(pong);
-		
+		this.addKeyListener(pong);	
 	}
+	
 /*
  * Methode permettant d'afficher les scores 
  */

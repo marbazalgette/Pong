@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Ball extends PongItem {
 		
 /* Constructeur de l'objet balle */
+	
 	public Ball (String Image,  int posX, int posY, boolean j1){
 		super(Image, posX, posY);
 		System.out.println(j1);
@@ -18,6 +19,7 @@ public class Ball extends PongItem {
 	}
 	
 	/* Fait rebondir la balle notament sur l'ensemble des PongItem du Pong */
+	
 	public void rebound (ArrayList<PongItem> t) {
 		for (int i=1; i<t.size(); i++) {
 			if (this.collision(t.get(i)) == true) {

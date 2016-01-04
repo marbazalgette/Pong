@@ -8,6 +8,7 @@ public abstract class PongItem {
 	/*
 	 ensemble des paramètres commun à l'ensembles des objets d'un Pong
 	 */
+	
 	protected int posX;
 	protected int posY;
 	protected int width;
@@ -15,9 +16,12 @@ public abstract class PongItem {
 	protected int speedX;
 	protected int speedY;
 	protected ImageIcon sprite;
+	
+	
 	/*
 	 Constructeur de l'objet Pong
 	 */
+	
 	protected PongItem (String Image, int posX, int posY){
 		this.sprite = new ImageIcon(Image);
 		this.posX = posX;

@@ -26,7 +26,8 @@
 		
 		/*background color or the area*/
 		private static final Color backgroundColor = new Color(0xFF, 0x40, 0);
-		/*interval de temps entre chaque rafraichissement de l'écran */
+		
+		/*interval de temps entre chaque raffraichissement de l'écran */
 		public final int timestep = 10;
 		
 		private Image buffer = null;
@@ -43,6 +44,7 @@
 		
 		
 		/*constructeur utilisé lors du jeu solo ou par l'host de la partie */
+		
 		public Pong() {
 			
 			racketGauche = new Racket ("img/racket.png",0,SIZE_PONG_Y/2,0);
@@ -59,6 +61,7 @@
 			}
 		}
 		/*constructeur utilisé par la personne qui se connecte */
+		
 		public Pong(InetAddress address) {
 			
 			host = false;
@@ -86,6 +89,7 @@
 		}
 	
 		/*met à jour l'intégralité des éléments graphique */
+		
 		public void updateScreen() {
 			if (buffer == null) {
 				buffer =  createImage(SIZE_PONG_X, SIZE_PONG_Y);
@@ -111,6 +115,7 @@
 				this.repaint();
 			}
 		/* augmente la vitesse de la rackette lorsque l'on appuie sur une flèche */
+		
 			public void keyPressed (KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_UP:
@@ -126,6 +131,7 @@
 				}
 			}
 			/* remet à 0 la vitesse de la rackette lorsque la flèche est relachée */
+			
 			public void keyReleased(KeyEvent e) {
 				switch (e.getKeyCode()) {
 					case KeyEvent.VK_UP:
@@ -143,50 +149,51 @@
 			public void keyTyped(KeyEvent e) { }
 	
 		/* boucle principale qui met à jour l'ensemble des éléments du Pong */
+			
 			public void animate() {
 				if(!host){
 					if (!solo) {
-					try {
-						player2 = new PlayerCommunication(network); /*met à jour les InputStream et OutputStream */
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					player2.sendRacketPosition(racketGauche.getPosY()); /*Envoie la nouvelle position de la Rackette */
+						try {
+							player2 = new PlayerCommunication(network); /*met à jour les InputStream et OutputStream */
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						player2.sendRacketPosition(racketGauche.getPosY()); /*Envoie la nouvelle position de la Rackette */
 						racketDroite.setPosY(player2.readRacketPosition()); /* Met à jour la position de la Rackette de l'adversaire */
 					}
-						ball.rebound(list); 
-						for (int i =0 ;i<list.size(); i++) {
-							list.get(i).move(); 
-							if(racketGauche.getPosY()<0)
-								racketGauche.setPosY(0);
-							if(racketGauche.getPosY()+racketGauche.getHeight()>SIZE_PONG_Y){
-								racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());
-								
+					ball.rebound(list); 
+					for (int i =0 ;i<list.size(); i++) {
+						list.get(i).move(); 
+						if(racketGauche.getPosY()<0)
+							racketGauche.setPosY(0);
+						if(racketGauche.getPosY()+racketGauche.getHeight()>SIZE_PONG_Y)
+							racketGauche.setPosY(SIZE_PONG_Y-racketGauche.getHeight());	
+						if(!host && !solo){
+							if(racketDroite.getPosY()<0)
+								racketDroite.setPosY(0);
+							if(racketDroite.getPosY()+racketDroite.getHeight()>SIZE_PONG_Y){
+								racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
 							}
-							if(!host && !solo){
-								if(racketDroite.getPosY()<0)
-									racketDroite.setPosY(0);
-								if(racketDroite.getPosY()+racketDroite.getHeight()>SIZE_PONG_Y){
-									racketDroite.setPosY(SIZE_PONG_Y-racketDroite.getHeight());
-								}
-							}
+						}
 							
-							/* Permet de voir si un but a été marqué et remet la balle en jeu */
-						if(ball.getPosX() <= 0){ 
-							SCORE_J2++;
-							ball.setPosY(300);
-							ball.setPosX(400);
-							ball.setSpeedX(-ball.getSpeedX());
-						}
-						if(ball.getPosX() >= SIZE_PONG_X && !solo){
-							SCORE_J1++;
-							ball.setPosY(300);
-							ball.setPosX(400);
-							ball.setSpeedX(-ball.getSpeedX());
-						}
-						}updateScreen(); 
-						}
+					/* Permet de voir si un but a été marqué et remet la balle en jeu */
+							
+					if(ball.getPosX() <= 0){ 
+						SCORE_J2++;
+						ball.setPosY(300);
+						ball.setPosX(400);
+						ball.setSpeedX(-ball.getSpeedX());
+					}
+					if(ball.getPosX() >= SIZE_PONG_X && !solo){
+						SCORE_J1++;
+						ball.setPosY(300);
+						ball.setPosX(400);
+						ball.setSpeedX(-ball.getSpeedX());
+					}
+				}
+				updateScreen(); 
 			}
+}
 		
 		
 	
