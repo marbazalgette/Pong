@@ -121,11 +121,11 @@ public class Pong extends JPanel implements KeyListener{
 			switch (e.getKeyCode()) {
 				case KeyEvent.VK_UP:
 				case KeyEvent.VK_KP_UP:
-					racketGauche.setSpeedY(- 4);
+					racketGauche.setSpeedY(-7);
 					break;
 				case KeyEvent.VK_DOWN:
 				case KeyEvent.VK_KP_DOWN:
-					racketGauche.setSpeedY(4);
+					racketGauche.setSpeedY(7);
 					break;
 				default:
 					System.out.println("got press "+e);
