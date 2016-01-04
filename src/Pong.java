@@ -59,7 +59,6 @@ public class Pong extends JPanel implements KeyListener{
 		list.add(ball);
 		list.add(racketGauche);
 		network = new Network();
-		network.connection(network.getConnectedAddress());
 		list.add(racketDroite);
 		this.addKeyListener(this);
 	}
@@ -75,7 +74,9 @@ public class Pong extends JPanel implements KeyListener{
 		list.add(racketGauche);
 		list.add(racketDroite);
 		network = new Network();
-		network.connection(address);
+		//System.out.println(network.getConnectedAddress() + "bite");
+		//network.connection(network.getConnectedAddress());
+		//network.connection(address);
 		try {
 			player2 = new PlayerCommunication(network);
 		} catch (IOException e) {

@@ -14,11 +14,12 @@ public class Network {
 	private Socket client;
 	OutputStream os;
 	InputStream is;
+	
 	public Network() {
 		try {
 			server = new ServerSocket(port);
 			if (Pong.solo) {
-				Socket tmp = server.accept();
+				client = server.accept();
 				//Pong.solo = false;
 			}
 			//server.setSoTimeout(1);
@@ -28,18 +29,15 @@ public class Network {
 		}
 	}
 	
-	public InetAddress getConnectedAddress() {
-		return server.getInetAddress();
-	}
+/*	public InetAddress getConnectedAddress() {
+		return tmp.getInetAddress().getHostAddress();
+	}*/
 	
 	public void connection(InetAddress address){
 		try{
 			client = new Socket(address, port);
 			os = client.getOutputStream();
 			is = client.getInputStream();
-			if (!Pong.solo) {
-				Socket tmp = server.accept();
-			}
 			Pong.solo = false;
 			//client.close();
 			
