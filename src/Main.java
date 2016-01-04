@@ -15,6 +15,7 @@ public class Main  {
 		Dialog dialog = new Dialog();
 		if (!dialog.firstDialog()) {
 			Pong.solo = true;
+			Pong.host = false;
 			pong = new Pong();
 		}
 		else if (dialog.secondDialog()) {     // si on veut jouer en solo
